@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Bitcoin Price</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="bitcoinimage">BitcoinImage</string>
+</resources>
