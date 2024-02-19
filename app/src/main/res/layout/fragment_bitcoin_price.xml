@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@{viewModel.uiState}"
+                    android:text="@{viewModel.uiState.bpi.USD.rate}"
                     android:textColor="@color/blue_900"
                     android:textSize="16sp" />
 
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@{viewModel.uiState}"
+                    android:text="@{viewModel.uiState.bpi.USD.rate}"
                     android:textColor="@color/blue_900"
                     android:textSize="16sp" />
 
@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@{viewModel.uiState}"
+                    android:text="@{viewModel.uiState.bpi.GBP.rate}"
                     android:textColor="@color/blue_900"
                     android:textSize="16sp" />
 

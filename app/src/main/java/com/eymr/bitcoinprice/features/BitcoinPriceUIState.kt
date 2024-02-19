@@ -1,7 +1,7 @@
 package com.eymr.bitcoinprice.features
 
-import com.eymr.bitcoinprice.models.bitcoinprice.ListPrice
+import com.eymr.bitcoinprice.domain.models.bitcoinprice.Bitcoin
 
 data class BitcoinPriceUIState(
-    val listPrice : ListPrice = ListPrice(emptyList())
+    val listPrice : Bitcoin = Bitcoin()
 )

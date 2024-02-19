@@ -2,29 +2,29 @@ package com.eymr.bitcoinprice.data.repositories
 
 import com.eymr.bitcoinprice.core.utils.Resource
 import com.eymr.bitcoinprice.data.services.IServicesAPI
+import com.eymr.bitcoinprice.domain.models.bitcoinprice.Bitcoin
 import com.eymr.bitcoinprice.domain.repositories.IBitcoinRepository
-import com.eymr.bitcoinprice.models.bitcoinprice.Bitcoin
-import com.eymr.bitcoinprice.models.bitcoinprice.ListPrice
-import java.lang.Exception
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class BitcoinRepositoryImp @Inject constructor(
     private val services: IServicesAPI,
 ) : IBitcoinRepository {
 
-    private var bitcoin: List<Bitcoin> = emptyList()
+    private val timeForRequest : Long = 30 * 1000  // 30 seconds
 
-    override suspend fun getPrice(): Resource<ListPrice> {
-        return try {
-            val response = services.getPrice()
-            if (response.isSuccessful) {
-                bitcoin = response.body()?.data ?: emptyList()
-                return Resource.Success(response.body() ?: ListPrice(emptyList()))
-            } else {
-                return Resource.Failure(response.message())
+    override suspend fun getPrice(): Flow<Resource<Bitcoin>> = flow {
+        while (true) {
+            try {
+                val response = services.getPrice()
+                emit(Resource.Success(response.body() ?: Bitcoin()))
+                // Delay for update
+                kotlinx.coroutines.delay(timeForRequest)
+            } catch (e: Exception) {
+                emit(Resource.Failure(e.message))
+                // Handle error
             }
-        } catch (e: Exception) {
-            Resource.Failure(e.message.toString())
         }
     }
 }

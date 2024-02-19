@@ -62,6 +62,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.3.6")
     implementation("com.google.maps.android:maps-compose-utils:4.0.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.databinding:databinding-runtime:8.2.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
