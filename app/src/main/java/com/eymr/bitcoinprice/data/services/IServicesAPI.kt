@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface IServicesAPI {
-    @GET("getPrice")
+    @GET("v1/bpi/currentprice.json")
     suspend fun getPrice(): Response<ListPrice>
 
 }

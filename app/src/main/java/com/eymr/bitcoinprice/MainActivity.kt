@@ -1,24 +1,22 @@
 package com.eymr.bitcoinprice
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.eymr.bitcoinprice.databinding.ActivityMainBinding
 import com.eymr.bitcoinprice.features.BitcoinPriceViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: BitcoinPriceViewModel
+    private val viewModel : BitcoinPriceViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        viewModel = ViewModelProvider(this).get(BitcoinPriceViewModel::class.java)
 
         // Establecer el ViewModel en el enlace de datos
         binding.viewModel = viewModel
