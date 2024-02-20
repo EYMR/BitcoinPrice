@@ -12,7 +12,6 @@
             type="com.eymr.bitcoinprice.features.BitcoinPriceViewModel" />
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,7 +26,7 @@
             android:background="@color/blue_900"
             android:gravity="start"
             android:padding="16dp"
-            android:text="@string/bitcoin"
+            android:text="@{viewModel.uiState.chartName}"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -57,57 +56,134 @@
             app:layout_constraintTop_toBottomOf="@id/bitcoinImageView">
 
 
-            <TextView
-                android:id="@+id/priceUsdTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/box_background"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="@{viewModel.uiState.bpi.USD.rate + ` - ` + viewModel.uiState.bpi.USD.description}"
-                android:textColor="@color/blue_900"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/priceEurTextView"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:background="@drawable/box_background"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="@{viewModel.uiState.bpi.EUR.rate + ` - ` + viewModel.uiState.bpi.EUR.description}"
-                android:textColor="@color/blue_900"
-                android:textSize="16sp" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
 
-            <TextView
-                android:id="@+id/priceGbpTextView"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/price_usd_icon"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"/>
+
+                    <TextView
+                        android:id="@+id/priceUsdTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:text="@{viewModel.uiState.bpi.USD.rate + `: ` + viewModel.uiState.bpi.USD.description}"
+                        android:textColor="@color/blue_900"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/box_background"
-                android:padding="16dp"
-                android:gravity="center"
-                android:text="@{viewModel.uiState.bpi.GBP.rate + ` - ` + viewModel.uiState.bpi.GBP.description}"
-                android:textColor="@color/blue_900"
-                android:textSize="16sp" />
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/euro_icon"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"/>
+
+                    <TextView
+                        android:id="@+id/priceEurTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:text="@{viewModel.uiState.bpi.EUR.rate + `: ` + viewModel.uiState.bpi.EUR.description}"
+                        android:textColor="@color/blue_900"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/gbp_icon"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/priceGbpTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:text="@{viewModel.uiState.bpi.GBP.rate + `: ` + viewModel.uiState.bpi.GBP.description}"
+                        android:textColor="@color/blue_900"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/lastUpdateTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"                android:text="@{`Last updated on ` + DateUtils.transformDate(viewModel.uiState.time.updated) + ` at ` + DateUtils.transformTime(viewModel.uiState.time.updated)}"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/lato_regular"
+                android:text="@{`Last updated on ` + DateUtils.transformDate(viewModel.uiState.time.updated) + ` at ` + DateUtils.transformTime(viewModel.uiState.time.updated)}"
                 android:textColor="@color/blue_900"
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent" />
-
-
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

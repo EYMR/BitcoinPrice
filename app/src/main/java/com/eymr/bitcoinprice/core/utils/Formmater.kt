@@ -7,7 +7,17 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
+/**
+ * A utility class for date and time transformations.
+ */
 object DateUtils {
+
+    /**
+     * Transforms a time string into a different format.
+     *
+     * @param time The input time string in the format "MMM dd, yyyy HH:mm:ss z".
+     * @return The transformed time string in the format "HH:mm".
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     @JvmStatic
     fun transformTime(time: String): String {
@@ -20,7 +30,12 @@ object DateUtils {
         return dateTime.format(outputFormatter)
     }
 
-
+    /**
+     * Transforms a date string into a different format.
+     *
+     * @param date The input date string in the format "MMM dd, yyyy HH:mm:ss z".
+     * @return The transformed date string in the format "dd MMMM yyyy".
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     @JvmStatic
     fun transformDate(date: String): String {

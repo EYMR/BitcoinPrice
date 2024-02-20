@@ -9,13 +9,18 @@ import androidx.fragment.app.viewModels
 import com.eymr.bitcoinprice.databinding.FragmentBitcoinPriceBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Fragment for displaying Bitcoin price information.
+ */
 @AndroidEntryPoint
-
 class BitcoinPriceFragment : Fragment() {
 
     private lateinit var binding: FragmentBitcoinPriceBinding
     private val viewModel: BitcoinPriceViewModel by viewModels()
 
+    /**
+     * Creates the view for the fragment.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,3 +31,4 @@ class BitcoinPriceFragment : Fragment() {
         return binding.root
     }
 }
+
