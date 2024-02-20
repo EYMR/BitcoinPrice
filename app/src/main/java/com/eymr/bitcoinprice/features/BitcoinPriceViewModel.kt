@@ -25,6 +25,9 @@ class BitcoinPriceViewModel @Inject constructor(
     val uiState: StateFlow<BitcoinPrice>
         get() = _uiState.asStateFlow()
 
+//    private val _uiState = MutableLiveData<Bitcoin>()
+//    val uiState: LiveData<Bitcoin> = _uiState
+
     init {
         fetchBitcoinPrice()
     }
