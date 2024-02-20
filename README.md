@@ -7,7 +7,7 @@ This Android app displays the current price of Bitcoin. It follows the MVVM arch
 - **User Interface:** Built with XML
 - **Architecture:** MVVM (Model-View-ViewModel) with XML for UI.
 - **Navigation:** Single-activity architecture using Navigation Compose.
-- **Presentation Layer:** Contains a Compose screen (View) and a ViewModel per screen/feature.
+- **Presentation Layer:** Contains an XML layout (View) and a ViewModel per screen/feature.
 - **Reactive UIs:** Uses Flow and coroutines for asynchronous operations.
 - **Data Layer:** Includes a repository and two data sources (local using Room and a fake remote).
 - **Testing:** Includes unit, integration, and end-to-end tests, including "shared" tests for emulator/device.
