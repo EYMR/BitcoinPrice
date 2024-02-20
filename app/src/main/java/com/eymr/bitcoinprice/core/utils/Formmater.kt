@@ -7,9 +7,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-object DateUtils {
     @RequiresApi(Build.VERSION_CODES.O)
-    @JvmStatic
     fun transformTime(time: String): String {
         if (time.isEmpty()) {
             return ""
@@ -20,9 +18,7 @@ object DateUtils {
         return dateTime.format(outputFormatter)
     }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
-    @JvmStatic
     fun transformDate(date: String): String {
         if (date.isEmpty()) {
             return ""
@@ -32,4 +28,4 @@ object DateUtils {
         val dateTime = LocalDateTime.parse(date, inputFormatter)
         return dateTime.format(outputFormatter)
     }
-}
+

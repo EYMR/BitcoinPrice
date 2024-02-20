@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eymr.bitcoinprice.core.di.IoDispatcher
 import com.eymr.bitcoinprice.core.utils.Resource
-import com.eymr.bitcoinprice.domain.models.bitcoinprice.Bitcoin
+import com.eymr.bitcoinprice.domain.models.bitcoinprice.BitcoinPrice
 import com.eymr.bitcoinprice.domain.repositories.IBitcoinRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -21,8 +21,8 @@ class BitcoinPriceViewModel @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<Bitcoin>(Bitcoin())
-    val uiState: StateFlow<Bitcoin>
+    private val _uiState = MutableStateFlow<BitcoinPrice>(BitcoinPrice())
+    val uiState: StateFlow<BitcoinPrice>
         get() = _uiState.asStateFlow()
 
     init {
@@ -33,7 +33,7 @@ class BitcoinPriceViewModel @Inject constructor(
             bitcoinRepository.getPrice().collect { response ->
                 when(response){
                     is Resource.Failure -> {
-                        _uiState.update {  Bitcoin() }
+                        _uiState.update {  BitcoinPrice() }
                     }
                     is Resource.Success -> {
                         _uiState.update {  response.data }

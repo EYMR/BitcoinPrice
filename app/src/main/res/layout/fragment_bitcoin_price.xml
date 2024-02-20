@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <import type="com.eymr.bitcoinprice.core.utils.DateUtils" />
-
         <variable
             name="viewModel"
             type="com.eymr.bitcoinprice.features.BitcoinPriceViewModel" />
@@ -66,7 +63,7 @@
                 android:background="@drawable/box_background"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="@{viewModel.uiState.bpi.USD.rate + ` - ` + viewModel.uiState.bpi.USD.description}"
+                android:text="@{viewModel.uiState.usdDescription}"
                 android:textColor="@color/blue_900"
                 android:textSize="16sp" />
 
@@ -78,7 +75,7 @@
                 android:background="@drawable/box_background"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="@{viewModel.uiState.bpi.EUR.rate + ` - ` + viewModel.uiState.bpi.EUR.description}"
+                android:text="@{viewModel.uiState.eurDescription}"
                 android:textColor="@color/blue_900"
                 android:textSize="16sp" />
 
@@ -91,7 +88,7 @@
                 android:background="@drawable/box_background"
                 android:padding="16dp"
                 android:gravity="center"
-                android:text="@{viewModel.uiState.bpi.GBP.rate + ` - ` + viewModel.uiState.bpi.GBP.description}"
+                android:text="@{viewModel.uiState.bpsDescription}"
                 android:textColor="@color/blue_900"
                 android:textSize="16sp" />
 
@@ -102,7 +99,8 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"                android:text="@{`Last updated on ` + DateUtils.transformDate(viewModel.uiState.time.updated) + ` at ` + DateUtils.transformTime(viewModel.uiState.time.updated)}"
+                android:layout_marginEnd="16dp"
+                android:text="@{viewModel.uiState.lastUpdate}"
                 android:textColor="@color/blue_900"
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent" />
