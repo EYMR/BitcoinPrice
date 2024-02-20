@@ -48,10 +48,12 @@ android {
 
 
 dependencies {
+    val navVersion = "2.7.0"
+    val mockkVersion = "1.13.9"
+    val coroutinesVersion = "1.8.0"
+
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-    val navVersion = "2.7.0"
-
 
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.4.1")
@@ -66,6 +68,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.44.2")
@@ -83,6 +87,11 @@ dependencies {
     //NAVIGATION
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+    //MOCKK
+    testImplementation("io.mockk:mockk:${mockkVersion}")
+    testImplementation("io.mockk:mockk-android:${mockkVersion}")
+    testImplementation("io.mockk:mockk-agent:${mockkVersion}")
 
 }
 
