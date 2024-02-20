@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="com.eymr.bitcoinprice.core.utils.DateUtils" />
+
         <variable
             name="viewModel"
             type="com.eymr.bitcoinprice.features.BitcoinPriceViewModel" />
     </data>
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
+        android:background="@color/white_smoke"
         tools:context=".features.BitcoinPriceFragment">
 
-
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/bitcoinTitleTextView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/blue_900"
             android:gravity="start"
@@ -25,73 +30,84 @@
             android:text="@string/bitcoin"
             android:textColor="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/bitcoinImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/bitcoinimage"
-            android:src="@drawable/bitcoin" />
+            android:src="@drawable/bitcoin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bitcoinTitleTextView" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bitcoinImageView">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+
+            <TextView
+                android:id="@+id/priceUsdTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/box_background"
-                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@{viewModel.uiState.bpi.USD.rate + ` - ` + viewModel.uiState.bpi.USD.description}"
+                android:textColor="@color/blue_900"
+                android:textSize="16sp" />
 
-                >
-
-                <TextView
-                    android:id="@+id/priceTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="@{viewModel.uiState.bpi.USD.rate}"
-                    android:textColor="@color/blue_900"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/priceEurTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
+                android:layout_margin="16dp"
                 android:background="@drawable/box_background"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@{viewModel.uiState.bpi.EUR.rate + ` - ` + viewModel.uiState.bpi.EUR.description}"
+                android:textColor="@color/blue_900"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="@{viewModel.uiState.bpi.USD.rate}"
-                    android:textColor="@color/blue_900"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/priceGbpTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/box_background"
-                android:orientation="vertical">
+                android:padding="16dp"
+                android:gravity="center"
+                android:text="@{viewModel.uiState.bpi.GBP.rate + ` - ` + viewModel.uiState.bpi.GBP.description}"
+                android:textColor="@color/blue_900"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="@{viewModel.uiState.bpi.GBP.rate}"
-                    android:textColor="@color/blue_900"
-                    android:textSize="16sp" />
+            <TextView
+                android:id="@+id/lastUpdateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"                android:text="@{`Last updated on ` + DateUtils.transformDate(viewModel.uiState.time.updated) + ` at ` + DateUtils.transformTime(viewModel.uiState.time.updated)}"
+                android:textColor="@color/blue_900"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-            </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
