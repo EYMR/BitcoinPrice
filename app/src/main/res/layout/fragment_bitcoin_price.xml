@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="com.eymr.bitcoinprice.core.utils.DateUtils" />
-
         <variable
             name="viewModel"
             type="com.eymr.bitcoinprice.features.BitcoinPriceViewModel" />
