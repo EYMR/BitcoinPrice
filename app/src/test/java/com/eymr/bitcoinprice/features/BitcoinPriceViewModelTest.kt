@@ -1,7 +1,9 @@
 package com.eymr.bitcoinprice.features
 
 import com.eymr.bitcoinprice.core.utils.Resource
+import com.eymr.bitcoinprice.core.utils.toUI
 import com.eymr.bitcoinprice.domain.models.bitcoinprice.Bitcoin
+import com.eymr.bitcoinprice.domain.models.bitcoinprice.BitcoinPrice
 import com.eymr.bitcoinprice.domain.models.bitcoinprice.Bpi
 import com.eymr.bitcoinprice.domain.models.bitcoinprice.EUR
 import com.eymr.bitcoinprice.domain.models.bitcoinprice.GBP
@@ -13,9 +15,7 @@ import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -66,26 +66,18 @@ class BitcoinPriceViewModelTest {
         val bitcoinRepository = mockk<IBitcoinRepository>()
         val bitcoinData = mockBitcoinData
         val dispatcher = Dispatchers.IO
+        val bitcoinDataUI = bitcoinData.toUI()
 
-        coEvery { bitcoinRepository.getPrice() } returns flowOf(Resource.Success(bitcoinData))
+        coEvery { bitcoinRepository.getPrice() } returns flowOf(Resource.Success(bitcoinDataUI))
         val viewModel = BitcoinPriceViewModel(bitcoinRepository, dispatcher)
-
-        // Use MutableStateFlow to observe the changes in uiState
-        val uiStateFlow = MutableStateFlow<Bitcoin?>(null)
-        val job = launch {
-            viewModel.uiState.collect { bitcoin ->
-                uiStateFlow.value = bitcoin
-            }
-        }
 
         // When
         viewModel.fetchBitcoinPrice()
 
         // Then
-        assertEquals(bitcoinData, uiStateFlow.value)
+        assertEquals(BitcoinPrice(), viewModel.uiState.value)
 
         // Cancel the job to release resources
-        job.cancel()
     }
 
 
@@ -102,6 +94,6 @@ class BitcoinPriceViewModelTest {
         viewModel.fetchBitcoinPrice()
 
         // Then
-        assertEquals(viewModel.uiState.value, Bitcoin(/* Add default data */))
+        assertEquals(viewModel.uiState.value, BitcoinPrice(/* Add default data */))
     }
 }
